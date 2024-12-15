@@ -1,0 +1,31 @@
+name: Run Unit Tests
+
+# Trigger this workflow when pushing to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest # Specify the environment (Ubuntu OS)
+
+    steps:
+      # Step 1: Checkout the code from the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up the environment (Node.js example; adjust for your tech stack)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Specify the version of Node.js to use
+
+      # Step 3: Install project dependencies
+      - name: Install Dependencies
+        run: npm install # Change this if using a different dependency manager
+
+      # Step 4: Run the unit tests
+      - name: Run Tests
+        run: npm test # Replace with the test command for your stack (e.g., pytest, mvn test, etc.)
